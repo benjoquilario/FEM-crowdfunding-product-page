@@ -1,0 +1,54 @@
+@use '../abstract/' as *;
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+.heading {
+  color: var(--black);
+  line-height: 1.4;
+
+  &--xxl {
+    @extend .heading;
+    font-size: clamp(1.25rem, 6vw, 1.6875rem);
+    margin: 1.625rem 0 0;
+    font-weight: var(--font-bold);
+  }
+  &--xl {
+    @extend .heading;
+    margin: rem(8);
+    font-size: clamp(1.9375rem, 5vw, 2.1875rem);
+  }
+  &--l {
+    @extend .heading;
+    font-size: clamp(1.125rem, 4vw, 1.25rem);
+  }
+}
+
+.paragraph {
+  color: var(--darkGray);
+  line-height: 1.7;
+
+  &--top {
+    @extend .paragraph;
+    font-size: clamp(0.8125rem, 6vw, 1rem);
+    margin: rem(16) 0;
+  }
+  &--m {
+    @extend .paragraph;
+    font-size: rem(16);
+  }
+  &--sm {
+    @extend .paragraph;
+    font-size: rem(15);
+  }
+}
+
+.paragraph-c {
+  color: var(--moderateCyan);
+  font-weight: var(--font-bold);
+}

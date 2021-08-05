@@ -1,0 +1,32 @@
+@use '../abstract/mixin' as *;
+.wrapper {
+  @extend %flex-center;
+  max-width: 90rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.container {
+  max-width: 71.875rem;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 200;
+  opacity: 0;
+  visibility: hidden;
+
+  &.overlay-open {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease-in-out;
+  }
+}

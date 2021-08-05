@@ -1,0 +1,124 @@
+@use '../abstract/' as *;
+
+.btn {
+  @extend %flex-center;
+  color: #fff;
+  border: none;
+  outline: none;
+  font-size: rem(16);
+  font-weight: var(--font-semiBold);
+  overflow: hidden;
+  backface-visibility: hidden;
+  position: relative;
+  transition: 0.3s;
+
+  @include btnFocus;
+  &:active {
+    outline: rem(2) dashed var(--moderateCyan);
+  }
+  &:disabled {
+    cursor: not-allowed;
+  }
+  &--disabled {
+    background-color: var(--darkGray);
+    border-radius: rem(100);
+    padding: rem(17) rem(30);
+  }
+  &--menu,
+  &--close {
+    background-color: transparent;
+    z-index: 1500;
+  }
+  &--menu {
+    @include breakpoint-up(medium) {
+      display: none;
+    }
+  }
+  &--back {
+    background-color: var(--moderateCyan);
+    border-radius: rem(100);
+    padding: rem(20) rem(40);
+    font-weight: var(--font-bold);
+
+    @media (max-width: 22.5625em) {
+      padding: rem(16) rem(27);
+    }
+    @media (max-width: 17.5em) {
+      padding: rem(16) rem(20);
+    }
+    &:hover {
+      background-color: var(--darkCyan);
+      transform: scale(0.96);
+    }
+  }
+  &--bookmark {
+    position: relative;
+    background-color: #fafafa;
+    padding: 0;
+    border-radius: rem(100);
+    transition: all 0.4s;
+    animation: bookMarkAnimate 350ms ease-in;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      border-radius: rem(100);
+      background-color: #fafafa;
+      z-index: -1;
+      transition: all 0.3s;
+    }
+    &:hover {
+      transform: translateY(rem(-3));
+
+      &::after {
+        box-shadow: 0 1px 10px rgba(90, 90, 90, 1);
+        transform: scale(2);
+      }
+    }
+    &__text {
+      display: none;
+      color: var(--darkGray);
+      padding: 0 rem(13);
+
+      @include breakpoint-up(medium) {
+        display: block;
+      }
+    }
+  }
+  &--bookmark.active {
+    circle {
+      fill: var(--moderateCyan);
+    }
+    path {
+      fill: #fff;
+    }
+    &:hover {
+      circle {
+        fill: var(--darkCyan);
+        transition: 0.3s ease-in-out;
+      }
+    }
+  }
+
+  &--continue,
+  &--select,
+  &--sucess {
+    background-color: var(--moderateCyan);
+    padding: rem(17) rem(30);
+    border-radius: rem(50);
+    @media (max-width: 280px) {
+      padding: rem(17) rem(24);
+    }
+    &:hover {
+      background-color: var(--darkCyan);
+      transform: scale(0.96);
+    }
+  }
+  &--modal-close {
+    background: transparent;
+  }
+}

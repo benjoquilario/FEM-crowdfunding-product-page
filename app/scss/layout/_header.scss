@@ -1,0 +1,133 @@
+@use '../abstract/' as *;
+@use '../base/helper' as *;
+.header {
+  background-image: url("/images/image-hero-mobile.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 100%;
+  height: 46vh;
+
+  @include breakpoint-up(medium) {
+    background-image: url("/images/image-hero-desktop.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+  .nav {
+    @extend %flex-between;
+    padding: rem(19) 0;
+
+    &__logo {
+      z-index: 1500;
+    }
+    &__menu {
+      position: absolute;
+      top: rem(81);
+      left: rem(20);
+      right: rem(20);
+      transform: translateX(-120%);
+      transition: transform 0.5s ease;
+      width: 90%;
+      margin: 0 auto;
+      opacity: 0;
+      z-index: 300;
+      @include breakpoint-up(medium) {
+        position: unset;
+        top: unset;
+        left: unset;
+        right: unset;
+        transform: translate(0);
+        transition: unset;
+        width: unset;
+        margin: unset;
+        z-index: unset;
+        opacity: 1;
+      }
+
+      &.active {
+        transform: translateX(0);
+        opacity: 1;
+        transition: opacity 0.3s ease;
+      }
+    }
+    &__list {
+      display: grid;
+      grid-template-rows: repeat(3, rem(54));
+      grid-template-columns: 1fr;
+      background-color: var(--white);
+      border-radius: rem(4);
+      height: rem(160);
+      padding: 0;
+
+      @include breakpoint-up(medium) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: unset;
+        background-color: unset;
+        border-radius: unset;
+      }
+      &--item {
+        padding: rem(14) rem(8);
+        cursor: pointer;
+      }
+    }
+    &__link {
+      color: var(--black);
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: rem(-5);
+        left: 0;
+        background-color: var(--white);
+        height: rem(2);
+        width: 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(0);
+        transition: transform 350ms ease-in-out;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: rem(-5);
+        right: 0;
+        background-color: var(--white);
+        height: rem(2);
+        width: 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(0);
+        transition: transform 350ms ease-in-out;
+      }
+      @include breakpoint-up(medium) {
+        color: var(--silver);
+
+        &:hover {
+          color: var(--white);
+          &::after,
+          &::before {
+            width: 100%;
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+          }
+        }
+      }
+      &:active {
+        color: var(--white);
+      }
+    }
+  }
+}
